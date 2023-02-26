@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}{{parent()}}{% endblock %}
+{% block title %}{{parent()}}  => Crear proveedor{% endblock %}
 
 {% block body %}
 <style>
@@ -10,7 +10,8 @@
 
 <div class="example-wrapper">
     
-    <h3> Hola Mundo! </h3>
-    {{dump(suppliers)}}
+    <h3> Hola Caracola! </h3>
+    
+    {{form(form)}}
 </div>
 {% endblock %}

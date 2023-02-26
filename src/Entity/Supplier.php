@@ -9,6 +9,12 @@ use Doctrine\ORM\Mapping as ORM;
 #[ORM\Entity(repositoryClass: SupplierRepository::class)]
 class Supplier
 {
+    //Definición variables per el form
+    const TYPES = ['Hotel' => 'Hotel', 'Pista' => 'Pista', 'Complementos' => 'Complementos'];
+    const STATUS = ['Active' => 1, 'Inactive' => 0];
+
+    // atributos clase
+
     #[ORM\Id]
     #[ORM\GeneratedValue]
     #[ORM\Column]
@@ -117,10 +123,23 @@ class Supplier
         return $this->date_edit;
     }
 
-    public function setDateEdit(\DateTimeInterface $date_edit): self
+    public function setDateEdit(): self
     {
-        $this->date_edit = $date_edit;
+        $this->date_edit = new \DateTime();
 
         return $this;
+    }
+
+    // Personalizamos el constructor para poder settear la fecha
+
+    public function __construct($name = null, $email = null, $phone = 0, $type = null, $status = 0)
+    {
+        $this->$name = $name;
+        $this->email = $email;
+        $this->$phone = $phone;
+        $this->$type = $type;
+        $this->$status = $status;
+        $this->date_create = new \DateTime();
+        $this->date_edit = new \DateTime();
     }
 }
