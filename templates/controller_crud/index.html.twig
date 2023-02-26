@@ -1,0 +1,60 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}{% endblock %}
+
+{% block body %}
+
+<div>
+    {{parent()}}
+    <h1> Proveedores </h1>
+
+<table>
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Correo electrónico</th>
+            <th>Teléfono</th>
+            <th>Tipo</th>
+            <th>Estado</th>
+            <th>Fecha creación</th>
+            <th>Fecha edición</th>
+            <th>Editar</th>
+            <th>Eliminar</th>
+        </tr>
+    </thead>
+    
+    {% for supplier in suppliers %}
+    <tbody>
+        <tr>
+            <td>{{ supplier.name }}</td>
+            <td>{{ supplier.email }}</td>
+            <td>{{ supplier.phone }}</td>
+            <td>{{ supplier.type}}</td>
+            <td>
+                {% if supplier.status == 1 %}
+                    <img src="{{ asset('img/up.png') }}" alt="Activo">
+                {% endif %}
+                {% if supplier.status == 0 %}
+                    <img src="{{ asset('img/down.png') }}" alt="Inactivo">
+                {% endif %}
+            </td>
+            <td>
+                {{ supplier.getDateCreate()|date}}
+            </td>
+            <td>
+               {{ supplier.getDateEdit()|date}}
+            </td>
+            <td>
+                <a href="{{ path('app_controller_update', {'id':supplier.id})}}" > <img src="{{ asset('img/edit.png') }}" alt="Editar"></a>
+            </td> 
+            <td>
+               <a href="{{ path('app_controller_delete', {'id':supplier.id})}}" > <img src="{{ asset('img/delete.png') }}" alt="Eliminar"></a>
+            </td>                  
+        </tr>
+    </tbody>
+    {% endfor %}
+    
+    </tbody>
+</table>
+</div>
+{% endblock %}

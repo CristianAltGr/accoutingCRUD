@@ -2,18 +2,37 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+        <title>{% block title %}Viajes Para Ti => Proveedores{% endblock %}</title>
+        <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico')}}" />
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}
         {% block stylesheets %}
-            {{ encore_entry_link_tags('app') }}
+           {# {{ encore_entry_link_tags('app') }} #} 
+           <link rel="stylesheet" href="{{asset('css/style.css')}}"/>
+           <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         {% endblock %}
 
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
+            {#  {{ encore_entry_script_tags('app') }} #}
         {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+
+        <!-- Header para toda la web -->
+        {% block header %}
+        <header>
+        <img src="{{ asset('img/logo.png') }}" alt="Viajes Para Ti">
+        <a  href="{{ path('app_controller_create')}}">Nuevo proveedor</a>
+        </header>
+        {% endblock %}
+        
+        {% block body %}
+        {% endblock %}
+
+        <!-- Footer para toda la web -->
+        {% block footer %}
+        <footer>
+        <p>Prueba Viajes para Ti || Cristian Fernández 2023 &copy;</p>
+        </footer>
+        {% endblock %}
     </body>
 </html>

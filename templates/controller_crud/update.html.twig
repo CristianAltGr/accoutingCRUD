@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}  => Modificar proveedor{% endblock %}
+
+{% block body %}
+ <!--Variable de bootstrap para form-->
+    {% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+<div>
+    <h2> Editar proveedor </h2>
+
+    <section class="editSupplier">
+        <p>Nombre: {{supplier.name}}</p>
+        <p>Email: {{supplier.email}}</p>
+        <p>Teléfono: {{supplier.phone}}</p>
+        <p>Tipo de proveedor: {{supplier.type}}</p>
+        {% if supplier.status == 1 %}
+            <p>Estado: Activo</p>
+        {% endif %}
+        {% if supplier.status == 0 %}
+            <p>Estado: Inactivo</p>
+        {% endif %}
+    </section>
+
+    <div class="container my-4 p-3">
+        <h3>Formulario de edición</h3>
+        {{form_start(form)}}
+        <div class="col-md-12 my-2">
+            {{form_label(form.name,'Nombre')}}
+            {{form_widget(form.name)}}
+        </div>
+        <div class="col-md-12 my-2">
+            {{form_label(form.email,'Correo electrónico')}}
+            {{form_widget(form.email)}}
+        </div>
+        <div class="col-md-12 my-2">
+            {{form_label(form.phone,'Teléfono')}}
+            {{form_widget(form.phone)}}
+        </div>
+        <div class="col-md-12 my-2">
+            {{form_label(form.type,'Tipo de proveedor')}}
+            {{form_widget(form.type)}}
+        </div>
+        <div class="col-md-12 my-2">
+            {{form_label(form.status,'Estado')}}
+            {{form_widget(form.status)}}
+        </div>
+        <div class="col-md-12 my-2 mt-4">
+            {{form_widget(form.submit,{'label' : 'Editar proveedor','attr':{'class':'btn btn-success btn-block col-md-12' }})}}
+        </div>
+        {{form_end(form)}}
+    </div>
+</div>
+
+{% endblock %}

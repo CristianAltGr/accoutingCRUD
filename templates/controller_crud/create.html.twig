@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{parent()}}  => Crear proveedor{% endblock %}
+
+{% block body %}
+ <!--Variable de bootstrap para form-->
+    {% form_theme form 'bootstrap_5_layout.html.twig' %}
+
+<div >
+    
+    <div>
+    <h2> Crear proveedor </h2>
+
+    <div class="container my-4 p-3">
+        <h3>Formulario de creación</h3>
+        {{form_start(form)}}
+        <div class="col-md-12 my-2">
+            {{form_label(form.name,'Nombre')}}
+            {{form_widget(form.name ,{'attr':{'placeholder':'GrandValira'}})}}
+        </div>
+        <div class="col-md-12 my-2">
+            {{form_label(form.email,'Correo electrónico')}}
+            {{form_widget(form.email ,{'attr':{'placeholder':'viajesparati@viajesparati.com'}})}}
+        </div>
+        <div class="col-md-12 my-2">
+            {{form_label(form.phone,'Teléfono')}}
+            {{form_widget(form.phone ,{'attr':{'placeholder':'677123456'}})}}
+        </div>
+        <div class="col-md-12 my-2">
+            {{form_label(form.type,'Tipo de proveedor')}}
+            {{form_widget(form.type)}}
+        </div>
+        <div class="col-md-12 my-2">
+            {{form_label(form.status,'Estado')}}
+            {{form_widget(form.status)}}
+        </div>
+        <div class="col-md-12 my-2 mt-4">
+            {{form_widget(form.submit,{'label' : 'Crear proveedor','attr':{'class':'btn btn-success btn-block col-md-12' }})}}
+        </div>
+        {{form_end(form)}}
+    </div>
+</div>
+</div>
+{% endblock %}
