@@ -70,6 +70,8 @@ class ControllerCRUDController extends AbstractController
         ]);
     }
 
+    //Editar un proveedor
+
     #[Route('/update/{id}', name: 'app_controller_update')]
     public function update(Request $request, $id)
     {
@@ -94,6 +96,8 @@ class ControllerCRUDController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
+
+    //Borrar proveedor
 
     #[Route('/delete/{id}', name: 'app_controller_delete')]
     public function delete(int $id)

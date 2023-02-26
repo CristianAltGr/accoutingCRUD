@@ -77,6 +77,25 @@ div a {
     height: 8vh;
 }
 
+h2 {
+    margin: 3vh;
+    text-align: center;
+}
+
+.editSupplier {
+    padding: 5vh;
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.editSupplier p {
+
+    font-weight: 600;
+    font-size: 2.5vh;
+    margin: 4vh;
+}
+
 /* Responsive */
 
 @media screen and (max-width: 800px) {
@@ -94,7 +113,7 @@ div a {
         margin-top: 2.5vh;
         padding-top: 1.5vh;
         padding-bottom: 1.5vh;
-        background: #f0f0f0;
+        background: #ccc6c6;
         font-weight: bold;
         font-size: 1.3em;
     }
@@ -111,12 +130,14 @@ div a {
     }
 }
 
-@media screen and (max-width: 400) {
+@media (max-width: 400px) {
 
-    header a {
 
-        padding: 2vh;
-        margin: 10vh;
+    header {
+        flex-direction: column;
     }
 
+    header a {
+        margin-top: 4vh;
+    }
 }
