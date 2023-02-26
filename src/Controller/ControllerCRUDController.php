@@ -49,9 +49,14 @@ class ControllerCRUDController extends AbstractController
         $form = $this->createForm(SupplierType::class, $supplier);
         $form->handleRequest($request);
 
-        //Se puede comporvar si el usuario existia antes con el suplier despues del form i una busqueda findBy
+        // Si existe un proveedor con el mismo nombre no hacemos nada si és nuevo lo agregamos a la base
 
-        if ($form->isSubmitted() && $form->isValid()) {
+        $check = $this->em->getRepository(Supplier::class)->findOneBy(['name' => $supplier->getName()]);
+
+        if ($check != null) {
+            return $this->redirectToRoute('app_controller_c_r_u_d');
+
+        } else if ($form->isSubmitted() && $form->isValid()) {
 
             $this->em->persist($supplier);
             $this->em->flush();
@@ -65,12 +70,11 @@ class ControllerCRUDController extends AbstractController
         ]);
     }
 
-    #[Route('/update', name: 'app_controller_update')]
-    public function update(Request $request)
+    #[Route('/update/{id}', name: 'app_controller_update')]
+    public function update(Request $request, $id)
     {
 
-        //configuara id con path
-        $supplier = $this->em->getRepository(Supplier::class)->find(4);
+        $supplier = $this->em->getRepository(Supplier::class)->find($id);
 
         $form = $this->createForm(SupplierType::class, $supplier);
         $form->handleRequest($request);
@@ -91,6 +95,7 @@ class ControllerCRUDController extends AbstractController
         ]);
     }
 
+    #[Route('/delete/{id}', name: 'app_controller_delete')]
     public function delete(int $id)
     {
         $supplier = $this->em->getRepository(Supplier::class)->find($id);
